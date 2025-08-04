@@ -4,7 +4,7 @@ import org.apache.flinkx.api.serializers.*
 import org.apache.flinkx.api.{ConnectedStreams, DataStream, KeyedStream, StreamExecutionEnvironment}
 import modernflink.model.{HumidityReading, LocalSummary, TemperatureReading}
 
-// val env = StreamExecutionEnvironment.getExecutionEnvironment
+val env = StreamExecutionEnvironment.getExecutionEnvironment
 
 val humidityDataStream: KeyedStream[HumidityReading, String] = env
   .readTextFile("src/main/resources/Humidity.txt")
@@ -24,7 +24,7 @@ val temperatureDataStream: KeyedStream[TemperatureReading, String] = env
 // Union
 def unionExample(): Unit =
 
-  val env = StreamExecutionEnvironment.getExecutionEnvironment
+  // val env = StreamExecutionEnvironment.getExecutionEnvironment
 
   val unionedHumidityData: DataStream[HumidityReading] = humidityDataStream.union(anotherDataStream)
 
@@ -45,5 +45,5 @@ def connectExample(): Unit =
   env.execute()
 
 @main def multipleStreamDemo() =
-//  unionExample()
-  connectExample()
+  unionExample()
+  // connectExample()
